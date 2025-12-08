@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malik Mashigo | Computer Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--teal:#10A37F;--teal-dark:#0D8A6A;--teal-light:#E6F7F2;--sage:#8B9A82;--terracotta:#C4704B;--sand:#F7F5F2;--cream:#FDFCFA;--warm-gray:#6B6B60;--charcoal:#1A1A18;--charcoal-light:#2D2D28;--stone:#E8E6E1}
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;font-size:16px}
+        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--cream);color:var(--charcoal);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        ::selection{background:var(--teal);color:white}
+        a{color:inherit;text-decoration:none}
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(253,252,250,0.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.04)}
+        .nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;letter-spacing:1px;color:var(--charcoal)}
+        .nav-links{display:flex;gap:40px;list-style:none}
+        .nav-links a{font-size:13px;font-weight:500;color:var(--warm-gray);transition:color 0.3s ease}
+        .nav-links a:hover{color:var(--teal)}
+        .nav-contact{font-size:13px;font-weight:500;color:var(--cream);background:var(--charcoal);padding:10px 20px;border-radius:100px;transition:all 0.3s ease}
+        .nav-contact:hover{background:var(--teal)}
+        .hero{min-height:100vh;background:linear-gradient(180deg,var(--cream) 0%,var(--sand) 100%);display:flex;flex-direction:column;justify-content:center;padding:160px 48px 120px;position:relative;overflow:hidden}
+        .hero-gradient{position:absolute;top:-50%;right:-20%;width:80%;height:150%;background:radial-gradient(ellipse at center,rgba(16,163,127,0.08) 0%,transparent 60%);pointer-events:none}
+        .hero-gradient-2{position:absolute;bottom:-30%;left:-10%;width:60%;height:100%;background:radial-gradient(ellipse at center,rgba(196,112,75,0.06) 0%,transparent 50%);pointer-events:none}
+        .hero-content{max-width:1200px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+        .hero-text{max-width:600px}
+        .hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:32px;opacity:0;animation:fadeUp 0.8s ease forwards}
+        .hero-eyebrow::before{content:'';width:32px;height:2px;background:var(--teal);border-radius:2px}
+        .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,8vw,100px);font-weight:300;line-height:1;letter-spacing:-3px;margin-bottom:32px;opacity:0;animation:fadeUp 0.8s ease 0.15s forwards}
+        .hero h1 em{font-style:italic;font-weight:400}
+        .hero h1 .gradient-text{background:linear-gradient(135deg,var(--teal) 0%,var(--sage) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-description{font-size:20px;line-height:1.7;color:var(--warm-gray);max-width:580px;margin-bottom:48px;opacity:0;animation:fadeUp 0.8s ease 0.3s forwards}
+        .hero-stats{display:flex;gap:48px;opacity:0;animation:fadeUp 0.8s ease 0.45s forwards}
+        .stat{display:flex;flex-direction:column;gap:4px}
+        .stat-value{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:400;color:var(--charcoal)}
+        .stat-label{font-size:12px;font-weight:500;color:var(--warm-gray)}
+        .hero-image{display:flex;justify-content:center;align-items:center;opacity:0;animation:fadeUp 0.8s ease 0.3s forwards}
+        .hero-image img{width:100%;max-width:420px;height:auto;border-radius:24px;box-shadow:0 40px 80px rgba(0,0,0,0.15);object-fit:cover}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+        section{padding:120px 48px}
+        .section-header{margin-bottom:64px}
+        .section-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+        .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,52px);font-weight:300;letter-spacing:-1px;color:var(--charcoal)}
+        .section-title em{font-style:italic}
+        #about{background:var(--charcoal);color:var(--cream);position:relative;overflow:hidden}
+        #about::before{content:'';position:absolute;top:0;right:0;width:50%;height:100%;background:radial-gradient(ellipse at top right,rgba(16,163,127,0.1) 0%,transparent 50%);pointer-events:none}
+        .about-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:100px;max-width:1300px;margin:0 auto;position:relative;z-index:1}
+        .about-left h3{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;line-height:1.4;margin-bottom:32px}
+        .about-left h3 em{font-style:italic;color:var(--teal)}
+        .about-tags{display:flex;flex-wrap:wrap;gap:10px}
+        .tag{padding:10px 18px;font-size:12px;font-weight:500;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:100px;transition:all 0.3s ease}
+        .tag:hover{border-color:var(--teal);background:rgba(16,163,127,0.1);color:var(--teal)}
+        .about-text{font-size:19px;line-height:1.9;color:rgba(255,255,255,0.75)}
+        .about-text p{margin-bottom:24px}
+        .about-text p:first-of-type::first-letter{font-family:'Cormorant Garamond',serif;font-size:64px;float:left;line-height:1;margin-right:14px;margin-top:6px;color:var(--teal);font-weight:300}
+        #education{background:var(--cream)}
+        .education-content{max-width:1000px;margin:0 auto}
+        .education-main{display:grid;grid-template-columns:1fr 2fr;gap:60px;margin-bottom:48px}
+        .education-school{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--charcoal);margin-bottom:8px}
+        .education-degree{font-size:15px;color:var(--warm-gray);margin-bottom:4px}
+        .education-period{font-family:'Space Mono',monospace;font-size:11px;color:var(--teal)}
+        .scholarship-box{background:var(--teal-light);border-left:3px solid var(--teal);padding:24px;border-radius:0 12px 12px 0;margin-bottom:32px}
+        .scholarship-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--charcoal);margin-bottom:8px}
+        .scholarship-desc{font-size:14px;color:var(--warm-gray);line-height:1.7}
+        .coursework-title{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+        .coursework-list{display:flex;flex-wrap:wrap;gap:8px}
+        .course-tag{font-size:12px;padding:8px 14px;background:var(--sand);border-radius:100px;color:var(--warm-gray);transition:all 0.3s ease}
+        .course-tag:hover{background:var(--teal-light);color:var(--teal)}
+        #experience{background:var(--sand)}
+        .experience-list{max-width:1000px;margin:0 auto}
+        .experience-item{display:grid;grid-template-columns:240px 1fr;gap:40px;padding:40px 0;border-bottom:1px solid var(--stone);transition:all 0.4s ease}
+        .experience-item:hover{padding-left:20px;border-color:var(--teal)}
+        .exp-company{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--charcoal)}
+        .exp-location{font-size:13px;color:var(--warm-gray);margin-top:2px}
+        .exp-period{font-family:'Space Mono',monospace;font-size:11px;color:var(--teal);margin-top:6px}
+        .exp-role{font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:12px}
+        .exp-description{font-size:14px;color:var(--warm-gray);line-height:1.8;margin-bottom:16px}
+        .exp-tools{font-size:12px;color:var(--teal);font-style:italic}
+        #projects{background:var(--cream);padding:140px 48px}
+        .projects-intro{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;font-style:italic;color:var(--warm-gray);max-width:500px;margin-bottom:64px}
+        .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:1300px;margin:0 auto}
+        .project-card{background:white;border:1px solid var(--stone);border-radius:16px;padding:40px;transition:all 0.4s ease;position:relative;overflow:hidden}
+        .project-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--teal) 0%,var(--sage) 100%);transform:scaleX(0);transform-origin:left;transition:transform 0.4s ease}
+        .project-card:hover{border-color:rgba(16,163,127,0.3);box-shadow:0 20px 60px rgba(0,0,0,0.06);transform:translateY(-4px)}
+        .project-card:hover::before{transform:scaleX(1)}
+        .project-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+        .project-category{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);padding:6px 12px;background:var(--teal-light);border-radius:100px}
+        .project-number{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--stone)}
+        .project-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;margin-bottom:14px;color:var(--charcoal);line-height:1.3}
+        .project-description{font-size:14px;line-height:1.8;color:var(--warm-gray);margin-bottom:24px}
+        .project-tech{display:flex;flex-wrap:wrap;gap:8px}
+        .tech-tag{font-family:'Space Mono',monospace;font-size:10px;padding:5px 10px;background:var(--sand);border-radius:6px;color:var(--warm-gray)}
+        .project-featured{grid-column:span 2;display:grid;grid-template-columns:1.3fr 1fr;gap:64px;padding:56px;background:linear-gradient(135deg,var(--teal-light) 0%,white 100%);border:none}
+        .project-featured:hover{box-shadow:0 24px 80px rgba(16,163,127,0.12)}
+        .project-featured .project-content{display:flex;flex-direction:column;justify-content:center}
+        .project-featured .project-title{font-size:32px}
+        .project-visual{background:linear-gradient(135deg,var(--charcoal) 0%,var(--charcoal-light) 100%);border-radius:12px;display:flex;align-items:center;justify-content:center;min-height:280px}
+        .project-visual::before{content:'NAMANI';font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:400;letter-spacing:8px;color:var(--teal);opacity:0.3}
+        .award-badge{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--terracotta);margin-top:16px}
+        .award-badge svg{width:14px;height:14px}
+        #skills{background:var(--charcoal);color:var(--cream);padding:140px 48px;position:relative;overflow:hidden}
+        #skills::before{content:'';position:absolute;bottom:0;left:0;width:100%;height:50%;background:radial-gradient(ellipse at bottom left,rgba(16,163,127,0.08) 0%,transparent 50%);pointer-events:none}
+        .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:56px;max-width:1200px;margin:0 auto;position:relative;z-index:1}
+        .skill-category h3{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:28px;padding-bottom:14px;border-bottom:2px solid rgba(16,163,127,0.3)}
+        .skill-list{display:flex;flex-direction:column;gap:14px}
+        .skill-item{font-size:15px;color:rgba(255,255,255,0.6);transition:color 0.3s ease}
+        .skill-item:hover{color:var(--teal)}
+        #interests{background:var(--sand);padding:100px 48px}
+        .interests-content{max-width:800px;margin:0 auto;text-align:center}
+        .interests-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--charcoal);margin-bottom:32px}
+        .interests-title em{font-style:italic}
+        .interests-list{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+        .interest-tag{padding:14px 28px;font-size:14px;font-weight:500;background:white;border:1px solid var(--stone);border-radius:100px;color:var(--warm-gray);transition:all 0.3s ease}
+        .interest-tag:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-light)}
+        #contact{background:linear-gradient(180deg,var(--cream) 0%,var(--sand) 100%);padding:180px 48px;text-align:center;position:relative;overflow:hidden}
+        #contact::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80%;height:80%;background:radial-gradient(ellipse at center,rgba(16,163,127,0.06) 0%,transparent 50%);pointer-events:none}
+        .contact-content{position:relative;z-index:1}
+        .contact-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:32px}
+        .contact-title{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,7vw,80px);font-weight:300;line-height:1.1;letter-spacing:-2px;margin-bottom:48px;color:var(--charcoal)}
+        .contact-title em{font-style:italic}
+        .contact-title .gradient-text{background:linear-gradient(135deg,var(--teal) 0%,var(--sage) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .contact-buttons{display:flex;justify-content:center;gap:16px}
+        .btn{padding:16px 32px;font-size:13px;font-weight:500;border-radius:100px;transition:all 0.3s ease;display:inline-flex;align-items:center;gap:10px}
+        .btn-primary{background:var(--charcoal);color:var(--cream)}
+        .btn-primary:hover{background:var(--teal);transform:translateY(-2px);box-shadow:0 12px 40px rgba(16,163,127,0.3)}
+        .btn-secondary{background:white;color:var(--charcoal);border:1px solid var(--stone)}
+        .btn-secondary:hover{border-color:var(--teal);color:var(--teal)}
+        footer{padding:40px 48px;background:var(--cream);border-top:1px solid var(--stone);display:flex;justify-content:space-between;align-items:center}
+        .footer-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--charcoal)}
+        .footer-text{font-size:12px;color:var(--warm-gray)}
+        .footer-links{display:flex;gap:28px}
+        .footer-links a{font-size:12px;color:var(--warm-gray);transition:color 0.3s ease}
+        .footer-links a:hover{color:var(--teal)}
+        .reveal{opacity:0;transform:translateY(30px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        @media(max-width:1024px){nav{padding:20px 32px}.hero,section,#contact{padding-left:32px;padding-right:32px}.hero-content{grid-template-columns:1fr;gap:40px;text-align:center}.hero-text{max-width:100%}.hero-eyebrow{justify-content:center}.hero-stats{justify-content:center}.hero-image{order:-1}.hero-image img{max-width:320px}.about-grid{grid-template-columns:1fr;gap:56px}.education-main{grid-template-columns:1fr;gap:32px}.projects-grid{grid-template-columns:1fr}.project-featured{grid-column:span 1;grid-template-columns:1fr}.skills-grid{grid-template-columns:repeat(2,1fr);gap:40px}.hero-stats{flex-wrap:wrap;gap:32px}.experience-item{grid-template-columns:1fr;gap:12px}footer{padding:32px}}
+        @media(max-width:768px){nav{padding:16px 24px}.nav-links{display:none}.hero,section,#contact{padding:80px 24px}.hero-stats{flex-direction:column;gap:24px}.hero-image img{max-width:260px}.skills-grid{grid-template-columns:1fr}.contact-buttons{flex-direction:column;align-items:center}.btn{width:100%;max-width:280px;justify-content:center}footer{flex-direction:column;gap:20px;text-align:center}.interests-list{gap:10px}.interest-tag{padding:10px 20px;font-size:13px}}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-logo">Malik Mashigo</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+        </ul>
+        <a href="mailto:malatjimashigo@gmail.com" class="nav-contact">Get in Touch</a>
+    </nav>
+    <section class="hero">
+        <div class="hero-gradient"></div>
+        <div class="hero-gradient-2"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-eyebrow">Computer Engineer & Entrepreneur</div>
+                <h1>Building <em>systems</em><br>that <span class="gradient-text">matter</span></h1>
+                <p class="hero-description">Hesburgh-Yusko Scholar at Notre Dame. CEO at Namani Tech. Shipping production AI systems from chip design to cloud deployment.</p>
+                <div class="hero-stats">
+                    <div class="stat"><span class="stat-value">20+</span><span class="stat-label">Engineering Projects</span></div>
+                    <div class="stat"><span class="stat-value">5</span><span class="stat-label">Tech Internships</span></div>
+                    <div class="stat"><span class="stat-value">3</span><span class="stat-label">Countries Deployed</span></div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="img.jpeg" alt="Malik Mashigo">
+            </div>
+        </div>
+    </section>
+    <section id="about">
+        <div class="section-header">
+            <div class="section-eyebrow">About</div>
+            <h2 class="section-title">The <em>vision</em></h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-left reveal">
+                <h3>Hesburgh-Yusko Scholar building <em>technology that transforms</em></h3>
+                <div class="about-tags">
+                    <span class="tag">Notre Dame '26</span>
+                    <span class="tag">Computer Engineering</span>
+                    <span class="tag">CEO @ Namani Tech</span>
+                    <span class="tag">Innovation & Entrepreneurship</span>
+                </div>
+            </div>
+            <div class="about-text reveal">
+                <p>Computer Engineering student at Notre Dame building AI-powered agricultural technology through Namani Tech. Our platform integrates ML models, IoT sensors, and satellite imagery to deliver real-time decision support for farmers across three countries.</p>
+                <p>Experience spans software engineering at PwC, product management at Weiss Asset Management and Diive Consulting, and winning UBS's Technology Pitch Competition. From ML-driven advertising workflows to algorithmic investment engines, I ship systems and products that solve real problems.</p>
+            </div>
+        </div>
+    </section>
+    <section id="education">
+        <div class="section-header">
+            <div class="section-eyebrow">Education</div>
+            <h2 class="section-title">The <em>foundation</em></h2>
+        </div>
+        <div class="education-content">
+            <div class="education-main reveal">
+                <div>
+                    <div class="education-school">University of Notre Dame</div>
+                    <div class="education-degree">BSc Computer Engineering</div>
+                    <div class="education-degree">Minor: Innovation & Entrepreneurship</div>
+                    <div class="education-period">2022 - 2026</div>
+                </div>
+                <div>
+                    <div class="scholarship-box">
+                        <div class="scholarship-title">Hesburgh-Yusko Scholar</div>
+                        <div class="scholarship-desc">One of 18 recipients of a four-year scholarship awarded to high-achieving Notre Dame students based on transformational leadership qualities, academic performance, and community involvement.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal">
+                <div class="coursework-title">Relevant Coursework</div>
+                <div class="coursework-list">
+                    <span class="course-tag">Computer Architecture</span>
+                    <span class="course-tag">Digital Integrated Circuits</span>
+                    <span class="course-tag">Computer Engineering Capstone Design</span>
+                    <span class="course-tag">Natural Language Processing</span>
+                    <span class="course-tag">Intro to Artificial Intelligence</span>
+                    <span class="course-tag">Computer Vision</span>
+                    <span class="course-tag">Data Science</span>
+                    <span class="course-tag">High-Level Synthesis</span>
+                    <span class="course-tag">Robotics Studio</span>
+                    <span class="course-tag">Operating System Principles</span>
+                    <span class="course-tag">Systems Programming</span>
+                    <span class="course-tag">Data Structures</span>
+                    <span class="course-tag">Logic Design</span>
+                    <span class="course-tag">Programming Challenges</span>
+                    <span class="course-tag">Signals Processing</span>
+                    <span class="course-tag">Intro to Embedded Systems & IoT</span>
+                    <span class="course-tag">Intro to Electrical Circuits</span>
+                    <span class="course-tag">Discrete Mathematics</span>
+                    <span class="course-tag">Probability & Statistics</span>
+                    <span class="course-tag">Linear Algebra & Differential Equations</span>
+                    <span class="course-tag">Calculus I, II, III</span>
+                    <span class="course-tag">Engineering Physics I & II</span>
+                    <span class="course-tag">Chemical Principles</span>
+                    <span class="course-tag">Intro to Entrepreneurship</span>
+                    <span class="course-tag">New Venture Creation</span>
+                    <span class="course-tag">Scientific Entrepreneurship</span>
+                    <span class="course-tag">Digital Prototyping</span>
+                    <span class="course-tag">Innovation & Design (Milan)</span>
+                    <span class="course-tag">Case Studies in Computing-Based Entrepreneurship</span>
+                    <span class="course-tag">Ethical & Professional Issues</span>
+                    <span class="course-tag">Foundations of Accountancy</span>
+                    <span class="course-tag">Principles of Microeconomics</span>
+                    <span class="course-tag">Business in America</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="experience">
+        <div class="section-header">
+            <div class="section-eyebrow">Experience</div>
+            <h2 class="section-title">The <em>journey</em></h2>
+        </div>
+        <div class="experience-list">
+            <div class="experience-item reveal">
+                <div><div class="exp-company">Namani Tech</div><div class="exp-location">Johannesburg, South Africa</div><div class="exp-period">May 2025 - Present</div></div>
+                <div><div class="exp-role">Co-Founder & CEO</div><div class="exp-description">Leading end-to-end development of an AI-powered agricultural tablet, integrating ML models, IoT sensor networks, and satellite imagery into a unified platform delivering real-time decision support for farmers.</div><div class="exp-tools">Python, React, Flutter, MongoDB, NumPy, IoT, ML Deployment, Claude Opus 4, GPT-5</div></div>
+            </div>
+            <div class="experience-item reveal">
+                <div><div class="exp-company">PwC</div><div class="exp-location">New York, NY</div><div class="exp-period">June 2024 - August 2024</div></div>
+                <div><div class="exp-role">Software Engineering Intern</div><div class="exp-description">Embedded with a major media client as a forward-deployed technologist, integrating ML-driven digital advertising workflows into legacy systems. Implemented Oracle Cloud-based operational upgrades for a pro bono client.</div><div class="exp-tools">Python, Linux, SQL, C++, Oracle Cloud, PyTorch, AI/ML Integration, Data Engineering</div></div>
+            </div>
+            <div class="experience-item reveal">
+                <div><div class="exp-company">Weiss Asset Management</div><div class="exp-location">Boston, MA</div><div class="exp-period">Nov 2023 - Jan 2024</div></div>
+                <div><div class="exp-role">Product Fellow</div><div class="exp-description">Selected as one of eight fellows for intensive quantitative trading program. Built and evaluated algorithmic trading strategies using statistical modeling and factor research.</div><div class="exp-tools">Python, SQL, Linux, Pandas, NumPy, VBA/Excel, Bloomberg Terminal, Backtesting</div></div>
+            </div>
+            <div class="experience-item reveal">
+                <div><div class="exp-company">Diive Consulting</div><div class="exp-location">Cape Town, South Africa</div><div class="exp-period">June 2023 - August 2023</div></div>
+                <div><div class="exp-role">Product Management Intern</div><div class="exp-description">Designed and deployed a distributed procurement platform linking restaurants to fisheries, enabling scalable, data-driven seafood sourcing across 10+ partners.</div><div class="exp-tools">Java, JavaScript, Linux, React.js, R, Git, Distributed Systems, CI/CD</div></div>
+            </div>
+            <div class="experience-item reveal">
+                <div><div class="exp-company">UBS</div><div class="exp-location">New York, NY</div><div class="exp-period">March 2023 - May 2023</div></div>
+                <div><div class="exp-role">UBS Product Competition Winner</div><div class="exp-description">Built an algorithmic investment-ranking engine in C++ and Java incorporating ESG metrics for large-scale asset evaluation.</div><div class="exp-tools">C++, Java, JavaScript, MATLAB, TensorFlow, Algorithm Design, Financial Modeling</div></div>
+            </div>
+            <div class="experience-item reveal">
+                <div><div class="exp-company">Goldman Sachs</div><div class="exp-location">New York, NY</div><div class="exp-period">Jan 2023 - Jan 2024</div></div>
+                <div><div class="exp-role">Software Engineering Emerging Leader</div><div class="exp-description">Selected for competitive programs analyzing large-scale financial systems and prototyping deployment-ready solutions.</div><div class="exp-tools">Python, Java, C++, System Design, Real-time Systems, Cloud Infrastructure</div></div>
+            </div>
+        </div>
+    </section>
+    <section id="projects">
+        <div class="section-header">
+            <div class="section-eyebrow">Projects</div>
+            <h2 class="section-title">The <em>work</em></h2>
+        </div>
+        <p class="projects-intro reveal">A curated selection of engineering projects spanning AI, embedded systems, VLSI, and full-stack development.</p>
+        <div class="projects-grid">
+            <div class="project-card project-featured reveal">
+                <div class="project-content">
+                    <div class="project-header"><span class="project-category">AgTech · Startup</span><span class="project-number">01</span></div>
+                    <h3 class="project-title">Namani Tech: AI Agricultural Intelligence Platform</h3>
+                    <p class="project-description">End-to-end agricultural system integrating custom miniaturized long-range sensors, AI analytics, farmer interfaces, and automated irrigation control. Deployed across South Africa, Italy, and the United States.</p>
+                    <div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">TensorFlow</span><span class="tech-tag">Flutter</span><span class="tech-tag">LoRa</span><span class="tech-tag">MongoDB</span><span class="tech-tag">Satellite APIs</span></div>
+                </div>
+                <div class="project-visual"></div>
+            </div>
+            <div class="project-card reveal"><div class="project-header"><span class="project-category">VLSI</span><span class="project-number">02</span></div><h3 class="project-title">8-bit MIPS Microprocessor</h3><p class="project-description">Designed and implemented standard cells in 0.5μm technology with DRC, LVS, and extraction verification.</p><div class="project-tech"><span class="tech-tag">Cadence Virtuoso</span><span class="tech-tag">Synopsys Genus</span><span class="tech-tag">Innovus</span></div></div>
+            <div class="project-card reveal"><div class="project-header"><span class="project-category">Manufacturing AI</span><span class="project-number">03</span></div><h3 class="project-title">LeanNLP Manufacturing Analytics</h3><p class="project-description">NLP system analyzing manufacturing process data to identify inefficiencies and generate actionable optimization recommendations.</p><div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">MATLAB</span><span class="tech-tag">spaCy</span><span class="tech-tag">NLTK</span></div></div>
+            <div class="project-card reveal"><div class="project-header"><span class="project-category">Industry 4.0</span><span class="project-number">04</span></div><h3 class="project-title">AI Industrial Tablet Prototype</h3><p class="project-description">World's first AI tablet designed for industrial and Industry 4.0 applications.</p><div class="project-tech"><span class="tech-tag">Embedded Linux</span><span class="tech-tag">Edge AI</span><span class="tech-tag">Industrial IoT</span></div></div>
+            <div class="project-card reveal"><div class="project-header"><span class="project-category">Industrial IoT</span><span class="project-number">05</span></div><h3 class="project-title">NLP-to-PLC Industrial System</h3><p class="project-description">Natural language to ladder logic translator with predictive analytics.</p><div class="project-tech"><span class="tech-tag">NLP</span><span class="tech-tag">React</span><span class="tech-tag">OPC-UA</span></div></div>
+            <div class="project-card reveal"><div class="project-header"><span class="project-category">Systems</span><span class="project-number">06</span></div><h3 class="project-title">Flash Translation Layer Simulator</h3><p class="project-description">Full system simulator with out-of-place updates, garbage collection, and wear leveling.</p><div class="project-tech"><span class="tech-tag">C++</span><span class="tech-tag">Systems Programming</span></div></div>
+            <div class="project-card reveal"><div class="project-header"><span class="project-category">Embedded</span><span class="project-number">07</span></div><h3 class="project-title">Theremin Signal-Processing Instrument</h3><p class="project-description">Embedded musical instrument controlled by electromagnetic field variations.</p><div class="project-tech"><span class="tech-tag">DSP</span><span class="tech-tag">Embedded C</span><span class="tech-tag">Audio Synthesis</span></div><div class="award-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>Innovation Award</div></div>
+            <div class="project-card reveal"><div class="project-header"><span class="project-category">Deep Learning</span><span class="project-number">08</span></div><h3 class="project-title">Transformer Machine Translation</h3><p class="project-description">Encoder-decoder Transformer for German-to-English with BPE tokenization.</p><div class="project-tech"><span class="tech-tag">PyTorch</span><span class="tech-tag">Transformers</span><span class="tech-tag">BPE</span></div></div>
+            <div class="project-card reveal"><div class="project-header"><span class="project-category">Fintech</span><span class="project-number">09</span></div><h3 class="project-title">UBS Investment Ranking System</h3><p class="project-description">Algorithmic ranking engine analyzing ESG metrics for large-scale asset evaluation.</p><div class="project-tech"><span class="tech-tag">C++</span><span class="tech-tag">Java</span><span class="tech-tag">TensorFlow</span></div><div class="award-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>Competition Winner</div></div>
+            <div class="project-card reveal"><div class="project-header"><span class="project-category">Capstone</span><span class="project-number">10</span></div><h3 class="project-title">AutoGuitar Embedded System</h3><p class="project-description">Auto-tuning instrument with audio frequency analysis and stepper motor control.</p><div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">Raspberry Pi</span><span class="tech-tag">DSP</span></div></div>
+            <div class="project-card reveal"><div class="project-header"><span class="project-category">IoT</span><span class="project-number">11</span></div><h3 class="project-title">M5Stack Sensor Prototype</h3><p class="project-description">IoT hardware prototype for field data collection supporting Namani's platform.</p><div class="project-tech"><span class="tech-tag">M5Stack</span><span class="tech-tag">ESP32</span><span class="tech-tag">MQTT</span></div></div>
+            <div class="project-card reveal"><div class="project-header"><span class="project-category">VLSI</span><span class="project-number">12</span></div><h3 class="project-title">Verilog FPGA Digital Systems</h3><p class="project-description">Digital systems on FPGA with FSM controller and testbench verification.</p><div class="project-tech"><span class="tech-tag">Verilog</span><span class="tech-tag">FPGA</span><span class="tech-tag">FSM</span></div></div>
+            <div class="project-card reveal"><div class="project-header"><span class="project-category">NLP</span><span class="project-number">13</span></div><h3 class="project-title">BiLSTM Part-of-Speech Tagger</h3><p class="project-description">Bidirectional LSTM for sequential dependency modeling.</p><div class="project-tech"><span class="tech-tag">PyTorch</span><span class="tech-tag">BiLSTM</span></div></div>
+            <div class="project-card reveal"><div class="project-header"><span class="project-category">NLP</span><span class="project-number">14</span></div><h3 class="project-title">BERT Embeddings & Clustering</h3><p class="project-description">BERT embeddings analysis with PCA, t-SNE, and UMAP.</p><div class="project-tech"><span class="tech-tag">BERT</span><span class="tech-tag">Sklearn</span><span class="tech-tag">UMAP</span></div></div>
+            <div class="project-card reveal"><div class="project-header"><span class="project-category">Full-Stack</span><span class="project-number">15</span></div><h3 class="project-title">Sumlet: Student Housing Platform</h3><p class="project-description">Verified marketplace for student summer housing with real-time chat.</p><div class="project-tech"><span class="tech-tag">React</span><span class="tech-tag">Node.js</span><span class="tech-tag">Real-time</span></div></div>
+            <div class="project-card reveal"><div class="project-header"><span class="project-category">Fintech</span><span class="project-number">16</span></div><h3 class="project-title">Universal Loyalty Wallet</h3><p class="project-description">Consumer fintech aggregating loyalty points with gamification.</p><div class="project-tech"><span class="tech-tag">React</span><span class="tech-tag">Firebase</span><span class="tech-tag">Plaid</span></div></div>
+            <div class="project-card reveal"><div class="project-header"><span class="project-category">NLP</span><span class="project-number">17</span></div><h3 class="project-title">Character-Level Language Models</h3><p class="project-description">N-gram, RNN, and LSTM language models from scratch.</p><div class="project-tech"><span class="tech-tag">PyTorch</span><span class="tech-tag">RNN</span><span class="tech-tag">LSTM</span></div></div>
+            <div class="project-card reveal"><div class="project-header"><span class="project-category">Energy</span><span class="project-number">18</span></div><h3 class="project-title">Smart Grid Technologies</h3><p class="project-description">Research on smart grid infrastructure and utility modernization.</p><div class="project-tech"><span class="tech-tag">Power Systems</span><span class="tech-tag">IoT</span><span class="tech-tag">SCADA</span></div></div>
+        </div>
+    </section>
+    <section id="skills">
+        <div class="section-header">
+            <div class="section-eyebrow" style="color:var(--teal)">Expertise</div>
+            <h2 class="section-title" style="color:var(--cream)">The <em>toolkit</em></h2>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-category reveal"><h3>Languages</h3><div class="skill-list"><span class="skill-item">Python</span><span class="skill-item">C++</span><span class="skill-item">JavaScript / TypeScript</span><span class="skill-item">Java</span><span class="skill-item">SQL</span><span class="skill-item">MATLAB</span><span class="skill-item">Verilog HDL</span><span class="skill-item">R</span><span class="skill-item">Dart</span></div></div>
+            <div class="skill-category reveal"><h3>ML & AI</h3><div class="skill-list"><span class="skill-item">PyTorch</span><span class="skill-item">TensorFlow</span><span class="skill-item">Transformers / BERT</span><span class="skill-item">NLP (spaCy, NLTK)</span><span class="skill-item">Computer Vision</span><span class="skill-item">Model Deployment</span><span class="skill-item">LLM Integration</span></div></div>
+            <div class="skill-category reveal"><h3>Full-Stack</h3><div class="skill-list"><span class="skill-item">React / React.js</span><span class="skill-item">Node.js</span><span class="skill-item">Flutter</span><span class="skill-item">MongoDB</span><span class="skill-item">Firebase / Supabase</span><span class="skill-item">REST APIs</span><span class="skill-item">CI/CD Pipelines</span></div></div>
+            <div class="skill-category reveal"><h3>Hardware & Systems</h3><div class="skill-list"><span class="skill-item">Linux</span><span class="skill-item">VLSI Design (Cadence)</span><span class="skill-item">FPGA Development</span><span class="skill-item">Embedded Systems</span><span class="skill-item">Raspberry Pi / ESP32</span><span class="skill-item">IoT Protocols</span><span class="skill-item">DSP</span><span class="skill-item">Systems Programming</span></div></div>
+        </div>
+    </section>
+    <section id="interests">
+        <div class="interests-content reveal">
+            <div class="interests-title">Beyond the <em>code</em></div>
+            <div class="interests-list">
+                <span class="interest-tag">South African Rugby</span>
+                <span class="interest-tag">European Soccer</span>
+                <span class="interest-tag">Traveling</span>
+                <span class="interest-tag">Braai</span>
+                <span class="interest-tag">Cars that go 0-60 in under 3 seconds</span>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <div class="contact-content">
+            <div class="contact-eyebrow">Get in Touch</div>
+            <h2 class="contact-title">Let's build something <span class="gradient-text"><em>beautiful</em></span>, together.</h2>
+            <div class="contact-buttons">
+                <a href="mailto:malatjimashigo@gmail.com" class="btn btn-primary"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>Contact Me</a>
+                <a href="https://www.linkedin.com/in/malik-mashigo-b38900241/" class="btn btn-secondary" target="_blank">LinkedIn</a>
+                <a href="https://github.com/MalikMashigo" class="btn btn-secondary" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-logo">Malik Mashigo</div>
+        <span class="footer-text">© 2025</span>
+        <div class="footer-links"><a href="#about">About</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div>
+    </footer>
+    <script>
+        const observerOptions={threshold:0.1,rootMargin:'0px 0px -60px 0px'};
+        const observer=new IntersectionObserver((entries)=>{entries.forEach((entry,index)=>{if(entry.isIntersecting){setTimeout(()=>{entry.target.classList.add('visible')},index*30)}})},observerOptions);
+        document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+        window.addEventListener('scroll',()=>{const nav=document.querySelector('nav');nav.style.boxShadow=window.scrollY>100?'0 4px 20px rgba(0,0,0,0.04)':'none'});
+    </script>
+</body>
+</html>

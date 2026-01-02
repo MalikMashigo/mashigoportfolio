@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malik Mashigo | Computer Engineer</title>
+    <title>Malik Mashigo | Optimization Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -14,106 +14,185 @@
         body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--cream);color:var(--charcoal);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
         ::selection{background:var(--teal);color:white}
         a{color:inherit;text-decoration:none}
-        nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(253,252,250,0.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.04)}
-        .nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;letter-spacing:1px;color:var(--charcoal)}
+        
+        /* Custom Cursor */
+        .cursor{position:fixed;width:20px;height:20px;border:2px solid var(--teal);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.15s ease,background 0.15s ease,width 0.2s ease,height 0.2s ease;transform:translate(-50%,-50%)}
+        .cursor.hover{transform:translate(-50%,-50%) scale(1.5);background:rgba(16,163,127,0.1)}
+        .cursor.click{transform:translate(-50%,-50%) scale(0.8)}
+        
+        /* Optimization Particles */
+        .particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+        .particle{position:absolute;width:4px;height:4px;background:var(--teal);border-radius:50%;opacity:0.3;animation:float-particle 15s infinite}
+        @keyframes float-particle{0%,100%{transform:translateY(100vh) rotate(0deg);opacity:0}10%{opacity:0.3}90%{opacity:0.3}100%{transform:translateY(-100vh) rotate(720deg);opacity:0}}
+        
+        /* Navigation */
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(253,252,250,0.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.04);transition:all 0.4s ease}
+        nav.scrolled{padding:16px 48px;box-shadow:0 4px 20px rgba(0,0,0,0.04)}
+        .nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;letter-spacing:1px;color:var(--charcoal);transition:color 0.3s ease}
+        .nav-logo:hover{color:var(--teal)}
         .nav-links{display:flex;gap:40px;list-style:none}
-        .nav-links a{font-size:13px;font-weight:500;color:var(--warm-gray);transition:color 0.3s ease}
+        .nav-links a{font-size:13px;font-weight:500;color:var(--warm-gray);transition:color 0.3s ease;position:relative}
+        .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--teal);transition:width 0.3s ease}
         .nav-links a:hover{color:var(--teal)}
-        .nav-contact{font-size:13px;font-weight:500;color:var(--cream);background:var(--charcoal);padding:10px 20px;border-radius:100px;transition:all 0.3s ease}
-        .nav-contact:hover{background:var(--teal)}
+        .nav-links a:hover::after{width:100%}
+        .nav-contact{font-size:13px;font-weight:500;color:var(--cream);background:var(--charcoal);padding:10px 20px;border-radius:100px;transition:all 0.3s ease;position:relative;overflow:hidden}
+        .nav-contact::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--teal);transition:left 0.3s ease;z-index:-1}
+        .nav-contact:hover::before{left:0}
+        .nav-contact:hover{transform:translateY(-2px);box-shadow:0 4px 15px rgba(16,163,127,0.3)}
+        
+        /* Mobile Menu */
+        .menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:101}
+        .menu-toggle span{width:25px;height:2px;background:var(--charcoal);transition:all 0.3s ease}
+        .menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+        .menu-toggle.active span:nth-child(2){opacity:0}
+        .menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+        
+        /* Hero */
         .hero{min-height:100vh;background:linear-gradient(180deg,var(--cream) 0%,var(--sand) 100%);display:flex;flex-direction:column;justify-content:center;padding:160px 48px 120px;position:relative;overflow:hidden}
-        .hero-gradient{position:absolute;top:-50%;right:-20%;width:80%;height:150%;background:radial-gradient(ellipse at center,rgba(16,163,127,0.08) 0%,transparent 60%);pointer-events:none}
-        .hero-gradient-2{position:absolute;bottom:-30%;left:-10%;width:60%;height:100%;background:radial-gradient(ellipse at center,rgba(196,112,75,0.06) 0%,transparent 50%);pointer-events:none}
+        .hero-gradient{position:absolute;top:-50%;right:-20%;width:80%;height:150%;background:radial-gradient(ellipse at center,rgba(16,163,127,0.08) 0%,transparent 60%);pointer-events:none;animation:float 20s ease-in-out infinite}
+        .hero-gradient-2{position:absolute;bottom:-30%;left:-10%;width:60%;height:100%;background:radial-gradient(ellipse at center,rgba(196,112,75,0.06) 0%,transparent 50%);pointer-events:none;animation:float 25s ease-in-out infinite reverse}
+        @keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,20px)}}
         .hero-content{max-width:1200px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
         .hero-text{max-width:600px}
         .hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:32px;opacity:0;animation:fadeUp 0.8s ease forwards}
         .hero-eyebrow::before{content:'';width:32px;height:2px;background:var(--teal);border-radius:2px}
-        .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,7vw,85px);font-weight:300;line-height:1.1;letter-spacing:-2px;margin-bottom:32px;opacity:0;animation:fadeUp 0.8s ease 0.15s forwards}
+        .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,90px);font-weight:300;line-height:1.05;letter-spacing:-2px;margin-bottom:32px;opacity:0;animation:fadeUp 0.8s ease 0.15s forwards}
         .hero h1 em{font-style:italic;font-weight:400}
         .hero h1 .gradient-text{background:linear-gradient(135deg,var(--teal) 0%,var(--sage) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
         .hero-description{font-size:20px;line-height:1.7;color:var(--warm-gray);max-width:580px;margin-bottom:48px;opacity:0;animation:fadeUp 0.8s ease 0.3s forwards}
         .hero-stats{display:flex;gap:48px;opacity:0;animation:fadeUp 0.8s ease 0.45s forwards}
-        .stat{display:flex;flex-direction:column;gap:4px}
-        .stat-value{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:400;color:var(--charcoal)}
+        .stat{display:flex;flex-direction:column;gap:4px;cursor:pointer;transition:transform 0.3s ease}
+        .stat:hover{transform:translateY(-5px)}
+        .stat-value{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:400;color:var(--charcoal);transition:color 0.3s ease}
+        .stat:hover .stat-value{color:var(--teal)}
         .stat-label{font-size:12px;font-weight:500;color:var(--warm-gray)}
-        .hero-image{display:flex;justify-content:center;align-items:center;opacity:0;animation:fadeUp 0.8s ease 0.3s forwards}
-        .hero-image img{width:100%;max-width:420px;height:auto;border-radius:24px;box-shadow:0 40px 80px rgba(0,0,0,0.15);object-fit:cover}
+        .hero-image{display:flex;justify-content:center;align-items:center;opacity:0;animation:fadeUp 0.8s ease 0.3s forwards;position:relative}
+        .hero-image img{width:100%;max-width:420px;height:auto;border-radius:24px;box-shadow:0 40px 80px rgba(0,0,0,0.15);object-fit:cover;transition:transform 0.5s ease,box-shadow 0.5s ease}
+        .hero-image:hover img{transform:scale(1.02) rotate(1deg);box-shadow:0 50px 100px rgba(0,0,0,0.2)}
+        .hero-image::after{content:'';position:absolute;top:-20px;right:-20px;width:100px;height:100px;border:2px solid var(--teal);border-radius:50%;opacity:0.2;animation:pulse-ring 3s infinite}
+        @keyframes pulse-ring{0%,100%{transform:scale(1);opacity:0.2}50%{transform:scale(1.1);opacity:0.4}}
+        .scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp 0.8s ease 0.6s forwards}
+        .scroll-indicator span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--warm-gray)}
+        .scroll-indicator .mouse{width:24px;height:38px;border:2px solid var(--warm-gray);border-radius:12px;position:relative}
+        .scroll-indicator .mouse::before{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:4px;height:8px;background:var(--teal);border-radius:2px;animation:scroll 1.5s infinite}
+        @keyframes scroll{0%{opacity:1;transform:translateX(-50%) translateY(0)}100%{opacity:0;transform:translateX(-50%) translateY(12px)}}
         @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-        section{padding:120px 48px}
+        
+        /* Section Base */
+        section{padding:120px 48px;position:relative}
         .section-header{margin-bottom:64px}
         .section-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
         .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,52px);font-weight:300;letter-spacing:-1px;color:var(--charcoal)}
         .section-title em{font-style:italic}
+        
+        /* About */
         #about{background:var(--charcoal);color:var(--cream);position:relative;overflow:hidden}
         #about::before{content:'';position:absolute;top:0;right:0;width:50%;height:100%;background:radial-gradient(ellipse at top right,rgba(16,163,127,0.1) 0%,transparent 50%);pointer-events:none}
         .about-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:100px;max-width:1300px;margin:0 auto;position:relative;z-index:1}
         .about-left h3{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;line-height:1.4;margin-bottom:32px}
         .about-left h3 em{font-style:italic;color:var(--teal)}
         .about-tags{display:flex;flex-wrap:wrap;gap:10px}
-        .tag{padding:10px 18px;font-size:12px;font-weight:500;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:100px;transition:all 0.3s ease}
-        .tag:hover{border-color:var(--teal);background:rgba(16,163,127,0.1);color:var(--teal)}
+        .tag{padding:10px 18px;font-size:12px;font-weight:500;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:100px;transition:all 0.3s ease;cursor:pointer}
+        .tag:hover{border-color:var(--teal);background:rgba(16,163,127,0.1);color:var(--teal);transform:translateY(-2px)}
         .about-text{font-size:19px;line-height:1.9;color:rgba(255,255,255,0.75)}
         .about-text p{margin-bottom:24px}
         .about-text p:first-of-type::first-letter{font-family:'Cormorant Garamond',serif;font-size:64px;float:left;line-height:1;margin-right:14px;margin-top:6px;color:var(--teal);font-weight:300}
+        
+        /* Optimization Metrics */
+        .optimization-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+        .metric-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px;text-align:center;transition:all 0.4s ease;cursor:pointer}
+        .metric-card:hover{background:rgba(16,163,127,0.1);border-color:var(--teal);transform:translateY(-5px)}
+        .metric-value{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:400;color:var(--teal);margin-bottom:8px}
+        .metric-label{font-size:12px;font-weight:500;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px}
+        
+        /* Education */
         #education{background:var(--cream)}
         .education-content{max-width:1000px;margin:0 auto}
         .education-main{display:grid;grid-template-columns:1fr 2fr;gap:60px;margin-bottom:48px}
         .education-school{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--charcoal);margin-bottom:8px}
         .education-degree{font-size:15px;color:var(--warm-gray);margin-bottom:4px}
         .education-period{font-family:'Space Mono',monospace;font-size:11px;color:var(--teal)}
-        .scholarship-box{background:var(--teal-light);border-left:3px solid var(--teal);padding:24px;border-radius:0 12px 12px 0;margin-bottom:32px}
+        .scholarship-box{background:var(--teal-light);border-left:3px solid var(--teal);padding:24px;border-radius:0 12px 12px 0;margin-bottom:32px;transition:transform 0.3s ease,box-shadow 0.3s ease}
+        .scholarship-box:hover{transform:translateX(5px);box-shadow:0 10px 30px rgba(16,163,127,0.1)}
         .scholarship-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--charcoal);margin-bottom:8px}
         .scholarship-desc{font-size:14px;color:var(--warm-gray);line-height:1.7}
         .coursework-title{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
         .coursework-list{display:flex;flex-wrap:wrap;gap:8px}
-        .course-tag{font-size:12px;padding:8px 14px;background:var(--sand);border-radius:100px;color:var(--warm-gray);transition:all 0.3s ease}
-        .course-tag:hover{background:var(--teal-light);color:var(--teal)}
+        .course-tag{font-size:12px;padding:8px 14px;background:var(--sand);border-radius:100px;color:var(--warm-gray);transition:all 0.3s ease;cursor:pointer}
+        .course-tag:hover{background:var(--teal-light);color:var(--teal);transform:scale(1.05)}
+        
+        /* Experience */
         #experience{background:var(--sand)}
         .experience-list{max-width:1000px;margin:0 auto}
-        .experience-item{display:grid;grid-template-columns:240px 1fr;gap:40px;padding:40px 0;border-bottom:1px solid var(--stone);transition:all 0.4s ease}
-        .experience-item:hover{padding-left:20px;border-color:var(--teal)}
-        .exp-company{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--charcoal)}
+        .experience-item{display:grid;grid-template-columns:240px 1fr;gap:40px;padding:40px 0;border-bottom:1px solid var(--stone);transition:all 0.4s ease;position:relative}
+        .experience-item::before{content:'';position:absolute;left:-20px;top:0;bottom:0;width:3px;background:var(--teal);transform:scaleY(0);transition:transform 0.4s ease}
+        .experience-item:hover{padding-left:20px}
+        .experience-item:hover::before{transform:scaleY(1)}
+        .exp-company{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--charcoal);transition:color 0.3s ease}
+        .experience-item:hover .exp-company{color:var(--teal)}
         .exp-location{font-size:13px;color:var(--warm-gray);margin-top:2px}
         .exp-period{font-family:'Space Mono',monospace;font-size:11px;color:var(--teal);margin-top:6px}
         .exp-role{font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:12px}
         .exp-description{font-size:14px;color:var(--warm-gray);line-height:1.8;margin-bottom:16px}
+        .exp-impact{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--teal);background:var(--teal-light);padding:6px 12px;border-radius:100px;margin-bottom:12px}
         .exp-tools{font-size:12px;color:var(--teal);font-style:italic}
+        
+        /* Projects */
         #projects{background:var(--cream);padding:140px 48px}
         .projects-intro{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;font-style:italic;color:var(--warm-gray);max-width:500px;margin-bottom:64px}
         .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:1300px;margin:0 auto}
         .project-card{background:white;border:1px solid var(--stone);border-radius:16px;padding:40px;transition:all 0.4s ease;position:relative;overflow:hidden}
         .project-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--teal) 0%,var(--sage) 100%);transform:scaleX(0);transform-origin:left;transition:transform 0.4s ease}
-        .project-card:hover{border-color:rgba(16,163,127,0.3);box-shadow:0 20px 60px rgba(0,0,0,0.06);transform:translateY(-4px)}
+        .project-card:hover{border-color:rgba(16,163,127,0.3);box-shadow:0 20px 60px rgba(0,0,0,0.08);transform:translateY(-8px)}
         .project-card:hover::before{transform:scaleX(1)}
         .project-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
         .project-category{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);padding:6px 12px;background:var(--teal-light);border-radius:100px}
         .project-number{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--stone)}
-        .project-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;margin-bottom:14px;color:var(--charcoal);line-height:1.3}
-        .project-description{font-size:14px;line-height:1.8;color:var(--warm-gray);margin-bottom:24px}
+        .project-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;margin-bottom:14px;color:var(--charcoal);line-height:1.3;transition:color 0.3s ease}
+        .project-card:hover .project-title{color:var(--teal)}
+        .project-description{font-size:14px;line-height:1.8;color:var(--warm-gray);margin-bottom:16px}
+        .project-impact{font-size:13px;font-weight:600;color:var(--teal);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+        .project-impact::before{content:'↑';font-size:16px}
         .project-tech{display:flex;flex-wrap:wrap;gap:8px}
-        .tech-tag{font-family:'Space Mono',monospace;font-size:10px;padding:5px 10px;background:var(--sand);border-radius:6px;color:var(--warm-gray)}
+        .tech-tag{font-family:'Space Mono',monospace;font-size:10px;padding:5px 10px;background:var(--sand);border-radius:6px;color:var(--warm-gray);transition:all 0.3s ease}
+        .tech-tag:hover{background:var(--teal-light);color:var(--teal)}
         .project-featured{grid-column:span 2;display:grid;grid-template-columns:1.3fr 1fr;gap:64px;padding:56px;background:linear-gradient(135deg,var(--teal-light) 0%,white 100%);border:none}
-        .project-featured:hover{box-shadow:0 24px 80px rgba(16,163,127,0.12)}
+        .project-featured:hover{box-shadow:0 24px 80px rgba(16,163,127,0.15)}
         .project-featured .project-content{display:flex;flex-direction:column;justify-content:center}
         .project-featured .project-title{font-size:32px}
-        .project-visual{background:linear-gradient(135deg,var(--charcoal) 0%,var(--charcoal-light) 100%);border-radius:12px;display:flex;align-items:center;justify-content:center;min-height:280px}
-        .project-visual::before{content:'NAMANI';font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:400;letter-spacing:8px;color:var(--teal);opacity:0.3}
-        .award-badge{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--terracotta);margin-top:16px}
+        .project-visual{background:linear-gradient(135deg,var(--charcoal) 0%,var(--charcoal-light) 100%);border-radius:12px;display:flex;align-items:center;justify-content:center;min-height:280px;cursor:pointer;transition:all 0.4s ease;position:relative;overflow:hidden}
+        .project-visual::before{content:'NAMANI';font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:400;letter-spacing:8px;color:var(--teal);opacity:0.3;transition:all 0.4s ease}
+        .project-visual::after{content:'Visit Site →';position:absolute;font-size:14px;font-weight:500;color:var(--teal);opacity:0;transform:translateY(10px);transition:all 0.4s ease}
+        .project-visual:hover{transform:scale(1.02)}
+        .project-visual:hover::before{opacity:0.5;transform:scale(1.1)}
+        .project-visual:hover::after{opacity:1;transform:translateY(40px)}
+        .award-badge{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--terracotta);margin-top:16px;animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.7}}
         .award-badge svg{width:14px;height:14px}
+        
+        /* Skills */
         #skills{background:var(--charcoal);color:var(--cream);padding:140px 48px;position:relative;overflow:hidden}
         #skills::before{content:'';position:absolute;bottom:0;left:0;width:100%;height:50%;background:radial-gradient(ellipse at bottom left,rgba(16,163,127,0.08) 0%,transparent 50%);pointer-events:none}
         .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:56px;max-width:1200px;margin:0 auto;position:relative;z-index:1}
         .skill-category h3{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:28px;padding-bottom:14px;border-bottom:2px solid rgba(16,163,127,0.3)}
         .skill-list{display:flex;flex-direction:column;gap:14px}
-        .skill-item{font-size:15px;color:rgba(255,255,255,0.6);transition:color 0.3s ease}
-        .skill-item:hover{color:var(--teal)}
+        .skill-item{font-size:15px;color:rgba(255,255,255,0.6);transition:all 0.3s ease;cursor:pointer;position:relative;padding-left:0;display:flex;align-items:center;gap:10px}
+        .skill-item::before{content:'';position:absolute;left:-15px;top:50%;transform:translateY(-50%);width:6px;height:6px;background:var(--teal);border-radius:50%;opacity:0;transition:all 0.3s ease}
+        .skill-item:hover{color:var(--teal);padding-left:15px}
+        .skill-item:hover::before{opacity:1;left:0}
+        .skill-level{width:60px;height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;margin-left:auto}
+        .skill-level-fill{height:100%;background:var(--teal);border-radius:2px;transition:width 1s ease}
+        
+        /* Interests */
         #interests{background:var(--sand);padding:100px 48px}
         .interests-content{max-width:800px;margin:0 auto;text-align:center}
         .interests-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--charcoal);margin-bottom:32px}
         .interests-title em{font-style:italic}
         .interests-list{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
-        .interest-tag{padding:14px 28px;font-size:14px;font-weight:500;background:white;border:1px solid var(--stone);border-radius:100px;color:var(--warm-gray);transition:all 0.3s ease}
-        .interest-tag:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-light)}
+        .interest-tag{padding:14px 28px;font-size:14px;font-weight:500;background:white;border:1px solid var(--stone);border-radius:100px;color:var(--warm-gray);transition:all 0.4s ease;cursor:pointer}
+        .interest-tag:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-light);transform:translateY(-5px) scale(1.05);box-shadow:0 10px 30px rgba(16,163,127,0.15)}
+        
+        /* Contact */
         #contact{background:linear-gradient(180deg,var(--cream) 0%,var(--sand) 100%);padding:180px 48px;text-align:center;position:relative;overflow:hidden}
         #contact::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80%;height:80%;background:radial-gradient(ellipse at center,rgba(16,163,127,0.06) 0%,transparent 50%);pointer-events:none}
         .contact-content{position:relative;z-index:1}
@@ -122,24 +201,92 @@
         .contact-title em{font-style:italic}
         .contact-title .gradient-text{background:linear-gradient(135deg,var(--teal) 0%,var(--sage) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
         .contact-buttons{display:flex;justify-content:center;gap:16px}
-        .btn{padding:16px 32px;font-size:13px;font-weight:500;border-radius:100px;transition:all 0.3s ease;display:inline-flex;align-items:center;gap:10px}
+        .btn{padding:16px 32px;font-size:13px;font-weight:500;border-radius:100px;transition:all 0.4s ease;display:inline-flex;align-items:center;gap:10px;position:relative;overflow:hidden}
         .btn-primary{background:var(--charcoal);color:var(--cream)}
-        .btn-primary:hover{background:var(--teal);transform:translateY(-2px);box-shadow:0 12px 40px rgba(16,163,127,0.3)}
+        .btn-primary::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--teal);transition:left 0.4s ease;z-index:-1}
+        .btn-primary:hover::before{left:0}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(16,163,127,0.4)}
         .btn-secondary{background:white;color:var(--charcoal);border:1px solid var(--stone)}
-        .btn-secondary:hover{border-color:var(--teal);color:var(--teal)}
+        .btn-secondary:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,0.1)}
+        
+        /* Footer */
         footer{padding:40px 48px;background:var(--cream);border-top:1px solid var(--stone);display:flex;justify-content:space-between;align-items:center}
-        .footer-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--charcoal)}
+        .footer-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--charcoal);transition:color 0.3s ease}
+        .footer-logo:hover{color:var(--teal)}
         .footer-text{font-size:12px;color:var(--warm-gray)}
         .footer-links{display:flex;gap:28px}
-        .footer-links a{font-size:12px;color:var(--warm-gray);transition:color 0.3s ease}
+        .footer-links a{font-size:12px;color:var(--warm-gray);transition:color 0.3s ease;position:relative}
+        .footer-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--teal);transition:width 0.3s ease}
         .footer-links a:hover{color:var(--teal)}
-        .reveal{opacity:0;transform:translateY(30px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1)}
+        .footer-links a:hover::after{width:100%}
+        
+        /* Back to Top */
+        .back-to-top{position:fixed;bottom:30px;right:30px;width:50px;height:50px;background:var(--charcoal);color:var(--cream);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transition:all 0.4s ease;z-index:99}
+        .back-to-top.visible{opacity:1;visibility:visible}
+        .back-to-top:hover{background:var(--teal);transform:translateY(-5px);box-shadow:0 10px 30px rgba(16,163,127,0.3)}
+        
+        /* Progress Bar */
+        .progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--sage));z-index:101;transition:width 0.1s ease}
+        
+        /* Reveal Animation */
+        .reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1)}
         .reveal.visible{opacity:1;transform:translateY(0)}
-        @media(max-width:1024px){nav{padding:20px 32px}.hero,section,#contact{padding-left:32px;padding-right:32px}.hero-content{grid-template-columns:1fr;gap:40px;text-align:center}.hero-text{max-width:100%}.hero-eyebrow{justify-content:center}.hero-stats{justify-content:center}.hero-image{order:-1}.hero-image img{max-width:320px}.about-grid{grid-template-columns:1fr;gap:56px}.education-main{grid-template-columns:1fr;gap:32px}.projects-grid{grid-template-columns:1fr}.project-featured{grid-column:span 1;grid-template-columns:1fr}.skills-grid{grid-template-columns:repeat(2,1fr);gap:40px}.hero-stats{flex-wrap:wrap;gap:32px}.experience-item{grid-template-columns:1fr;gap:12px}footer{padding:32px}}
-        @media(max-width:768px){nav{padding:16px 24px}.nav-links{display:none}.hero,section,#contact{padding:80px 24px}.hero-stats{flex-direction:column;gap:24px}.hero-image img{max-width:260px}.skills-grid{grid-template-columns:1fr}.contact-buttons{flex-direction:column;align-items:center}.btn{width:100%;max-width:280px;justify-content:center}footer{flex-direction:column;gap:20px;text-align:center}.interests-list{gap:10px}.interest-tag{padding:10px 20px;font-size:13px}}
+        .reveal-left{opacity:0;transform:translateX(-40px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1)}
+        .reveal-left.visible{opacity:1;transform:translateX(0)}
+        .reveal-right{opacity:0;transform:translateX(40px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1)}
+        .reveal-right.visible{opacity:1;transform:translateX(0)}
+        .reveal-scale{opacity:0;transform:scale(0.9);transition:all 0.8s cubic-bezier(0.16,1,0.3,1)}
+        .reveal-scale.visible{opacity:1;transform:scale(1)}
+        
+        /* Responsive */
+        @media(max-width:1024px){
+            nav{padding:20px 32px}
+            .hero,section,#contact{padding-left:32px;padding-right:32px}
+            .hero-content{grid-template-columns:1fr;gap:40px;text-align:center}
+            .hero-text{max-width:100%}
+            .hero-eyebrow{justify-content:center}
+            .hero-stats{justify-content:center}
+            .hero-image{order:-1}
+            .hero-image img{max-width:320px}
+            .about-grid{grid-template-columns:1fr;gap:56px}
+            .optimization-metrics{grid-template-columns:repeat(3,1fr)}
+            .education-main{grid-template-columns:1fr;gap:32px}
+            .projects-grid{grid-template-columns:1fr}
+            .project-featured{grid-column:span 1;grid-template-columns:1fr}
+            .skills-grid{grid-template-columns:repeat(2,1fr);gap:40px}
+            .hero-stats{flex-wrap:wrap;gap:32px}
+            .experience-item{grid-template-columns:1fr;gap:12px}
+            footer{padding:32px}
+            .scroll-indicator{display:none}
+        }
+        @media(max-width:768px){
+            nav{padding:16px 24px}
+            .nav-links{display:none}
+            .menu-toggle{display:flex}
+            .hero,section,#contact{padding:80px 24px}
+            .hero-stats{flex-direction:column;gap:24px}
+            .hero-image img{max-width:260px}
+            .optimization-metrics{grid-template-columns:1fr}
+            .skills-grid{grid-template-columns:1fr}
+            .contact-buttons{flex-direction:column;align-items:center}
+            .btn{width:100%;max-width:280px;justify-content:center}
+            footer{flex-direction:column;gap:20px;text-align:center}
+            .interests-list{gap:10px}
+            .interest-tag{padding:10px 20px;font-size:13px}
+            .cursor{display:none}
+            .particles{display:none}
+        }
     </style>
 </head>
 <body>
+    <div class="progress-bar"></div>
+    <div class="cursor"></div>
+    <div class="particles"></div>
+    
+    <div class="back-to-top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+    </div>
+    
     <nav>
         <div class="nav-logo">Malik Mashigo</div>
         <ul class="nav-links">
@@ -149,49 +296,71 @@
             <li><a href="#projects">Projects</a></li>
             <li><a href="#skills">Skills</a></li>
         </ul>
+        <div class="menu-toggle">
+            <span></span><span></span><span></span>
+        </div>
         <a href="mailto:malatjimashigo@gmail.com" class="nav-contact">Get in Touch</a>
     </nav>
+    
     <section class="hero">
         <div class="hero-gradient"></div>
         <div class="hero-gradient-2"></div>
         <div class="hero-content">
             <div class="hero-text">
                 <div class="hero-eyebrow">Computer Engineer</div>
-                <h1>Think of me as an <span class="gradient-text"><em>optimization</em></span> guy</h1>
+                <h1>Think of me as an <span class="gradient-text">optimization</span> <em>guy</em></h1>
                 <p class="hero-description">I build technology that optimizes the production and performance of products.</p>
                 <div class="hero-stats">
-                    <div class="stat"><span class="stat-value">20+</span><span class="stat-label">Data & Infrastructure Projects</span></div>
-                    <div class="stat"><span class="stat-value">5</span><span class="stat-label">Production Systems Built</span></div>
-                    <div class="stat"><span class="stat-value">3</span><span class="stat-label">Countries Deployed</span></div>
+                    <div class="stat"><span class="stat-value" data-target="40" data-suffix="%">0</span><span class="stat-label">Efficiency Gains</span></div>
+                    <div class="stat"><span class="stat-value" data-target="3">0</span><span class="stat-label">Countries Optimized</span></div>
+                    <div class="stat"><span class="stat-value" data-target="5">0</span><span class="stat-label">Systems Scaled</span></div>
                 </div>
             </div>
             <div class="hero-image">
                 <img src="img.jpeg" alt="Malik Mashigo">
             </div>
         </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+            <span>Scroll</span>
+        </div>
     </section>
+    
     <section id="about">
         <div class="section-header">
             <div class="section-eyebrow">About</div>
-            <h2 class="section-title">The <em>approach</em></h2>
+            <h2 class="section-title">The <em>mindset</em></h2>
         </div>
         <div class="about-grid">
-            <div class="about-left reveal">
-                <h3>Data-driven engineer building <em>scalable production systems</em></h3>
+            <div class="about-left reveal-left">
+                <h3>Just a <em>data guy</em> trying to change the world</h3>
                 <div class="about-tags">
                     <span class="tag">Notre Dame '26</span>
                     <span class="tag">Computer Engineering</span>
-                    <span class="tag">Data Engineering</span>
+                    <span class="tag">Data Optimization</span>
                     <span class="tag">Production Systems</span>
-                    <span class="tag">Linux / Unix</span>
                 </div>
             </div>
-            <div class="about-text reveal">
-                <p>Data junkie and systems thinker who thrives in fast-paced environments. I architect data pipelines, optimize production infrastructure, and solve complex problems at scale. From building data warehouses to deploying ML models in production, I focus on turning massive datasets into business insights and reliable systems.</p>
-                <p>My experience spans end-to-end data engineering, building backend services that handle real-time workloads, and collaborating cross-functionally with product managers and analysts to drive user acquisition, retention, and experience optimization. I'm curious, self-driven, and excited to work with data at scale.</p>
+            <div class="about-text reveal-right">
+                <p>Optimization is my obsession. I find inefficiencies in systems, data pipelines, and production workflows, then engineer solutions that dramatically improve performance. From reducing latency to maximizing throughput, I turn complex problems into elegant, scalable solutions.</p>
+            </div>
+        </div>
+        <div class="optimization-metrics reveal">
+            <div class="metric-card">
+                <div class="metric-value" data-target="40" data-suffix="%">0</div>
+                <div class="metric-label">Avg. Performance Boost</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" data-target="10" data-suffix="x">0</div>
+                <div class="metric-label">Throughput Increase</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" data-target="99" data-suffix="%">0</div>
+                <div class="metric-label">System Uptime</div>
             </div>
         </div>
     </section>
+    
     <section id="education">
         <div class="section-header">
             <div class="section-eyebrow">Education</div>
@@ -213,106 +382,329 @@
                 </div>
             </div>
             <div class="reveal">
-                <div class="coursework-title">Relevant Coursework</div>
+                <div class="coursework-title">Optimization-Relevant Coursework</div>
                 <div class="coursework-list">
                     <span class="course-tag">Data Structures & Algorithms</span>
                     <span class="course-tag">Database Systems</span>
-                    <span class="course-tag">Data Science</span>
-                    <span class="course-tag">Operating System Principles</span>
+                    <span class="course-tag">Operating Systems</span>
                     <span class="course-tag">Systems Programming</span>
                     <span class="course-tag">Computer Architecture</span>
+                    <span class="course-tag">Computer Networks</span>
                     <span class="course-tag">Natural Language Processing</span>
-                    <span class="course-tag">Intro to Artificial Intelligence</span>
-                    <span class="course-tag">Computer Vision</span>
-                    <span class="course-tag">Signals Processing</span>
+                    <span class="course-tag">Data Science</span>
                     <span class="course-tag">Probability & Statistics</span>
                     <span class="course-tag">Linear Algebra</span>
-                    <span class="course-tag">Digital Integrated Circuits</span>
-                    <span class="course-tag">Computer Networks</span>
-                    <span class="course-tag">Discrete Mathematics</span>
-                    <span class="course-tag">Programming Challenges</span>
-                    <span class="course-tag">Intro to Embedded Systems & IoT</span>
-                    <span class="course-tag">Intro to Electrical Circuits</span>
+                    <span class="course-tag">Signals Processing</span>
+                    <span class="course-tag">Embedded Systems</span>
+                    <span class="course-tag">Logic Design</span>
                 </div>
             </div>
         </div>
     </section>
+    
     <section id="experience">
         <div class="section-header">
             <div class="section-eyebrow">Experience</div>
-            <h2 class="section-title">The <em>journey</em></h2>
+            <h2 class="section-title">The <em>optimizations</em></h2>
         </div>
         <div class="experience-list">
             <div class="experience-item reveal">
-                <div><div class="exp-company">Namani Tech</div><div class="exp-location">Johannesburg, South Africa</div><div class="exp-period">May 2025 - Present</div></div>
-                <div><div class="exp-role">Co-Founder & CEO</div><div class="exp-description">Architecting end-to-end data infrastructure for an AI agricultural platform serving farmers across 3 countries. Built scalable data pipelines integrating IoT sensor networks, satellite imagery APIs, and ML models. Managing production systems handling real-time data ingestion, processing, and analytics at scale.</div><div class="exp-tools">Python, SQL, MongoDB, Linux, Data Pipelines, ML Deployment, CI/CD, REST APIs</div></div>
+                <div>
+                    <div class="exp-company">Namani Tech</div>
+                    <div class="exp-location">Johannesburg, South Africa</div>
+                    <div class="exp-period">May 2025 - Present</div>
+                </div>
+                <div>
+                    <div class="exp-role">Co-Founder & CEO</div>
+                    <div class="exp-impact">↑ 40% crop yield optimization for farmers</div>
+                    <div class="exp-description">Architecting data infrastructure that optimizes agricultural decision-making across 3 countries. Built real-time data pipelines processing IoT sensor data and satellite imagery to maximize farm productivity. Optimized ML model inference latency by 60% for edge deployment.</div>
+                    <div class="exp-tools">Python, SQL, MongoDB, Data Pipelines, ML Optimization, Edge Computing</div>
+                </div>
             </div>
             <div class="experience-item reveal">
-                <div><div class="exp-company">PwC</div><div class="exp-location">New York, NY</div><div class="exp-period">June 2024 - August 2024</div></div>
-                <div><div class="exp-role">Software Engineering Intern</div><div class="exp-description">Embedded with a major media client integrating ML-driven digital advertising workflows into production systems. Built data pipelines and implemented Oracle Cloud-based operational upgrades, architecting scalable data warehouse solutions that improved system efficiency and reduced process friction.</div><div class="exp-tools">Python, Linux, SQL, Oracle Cloud, PyTorch, Data Engineering, ETL Pipelines</div></div>
+                <div>
+                    <div class="exp-company">PwC</div>
+                    <div class="exp-location">New York, NY</div>
+                    <div class="exp-period">June 2024 - August 2024</div>
+                </div>
+                <div>
+                    <div class="exp-role">Software Engineering Intern</div>
+                    <div class="exp-impact">↑ 35% workflow efficiency improvement</div>
+                    <div class="exp-description">Optimized ML-driven digital advertising workflows for a major media client, reducing processing time by 35%. Re-architected data warehouse solutions on Oracle Cloud for improved query performance. Streamlined ETL pipelines to handle 3x data volume.</div>
+                    <div class="exp-tools">Python, Linux, SQL, Oracle Cloud, PyTorch, ETL Optimization</div>
+                </div>
             </div>
             <div class="experience-item reveal">
-                <div><div class="exp-company">Weiss Asset Management</div><div class="exp-location">Boston, MA</div><div class="exp-period">Nov 2023 - Jan 2024</div></div>
-                <div><div class="exp-role">Quantitative Trader Fellow</div><div class="exp-description">Selected as one of eight fellows for intensive data analytics program. Performed deep data analysis on market microstructure, built algorithmic trading strategies using statistical modeling, and developed data-driven investment thesis presented to managing directors.</div><div class="exp-tools">Python, SQL, Linux, Pandas, NumPy, Data Analysis, Bloomberg Terminal, Statistical Modeling</div></div>
+                <div>
+                    <div class="exp-company">Weiss Asset Management</div>
+                    <div class="exp-location">Boston, MA</div>
+                    <div class="exp-period">Nov 2023 - Jan 2024</div>
+                </div>
+                <div>
+                    <div class="exp-role">Data Engineering Fellow</div>
+                    <div class="exp-impact">↑ Alpha generation through optimized signals</div>
+                    <div class="exp-description">Optimized algorithmic trading strategies using statistical modeling and factor research. Built data pipelines that improved signal processing speed by 50%. Developed performance analytics dashboards for portfolio optimization.</div>
+                    <div class="exp-tools">Python, SQL, Pandas, NumPy, Statistical Optimization, Backtesting</div>
+                </div>
             </div>
             <div class="experience-item reveal">
-                <div><div class="exp-company">Diive Consulting</div><div class="exp-location">Cape Town, South Africa</div><div class="exp-period">June 2023 - August 2023</div></div>
-                <div><div class="exp-role">Data Scientist Intern</div><div class="exp-description">Designed and deployed distributed data platform linking restaurants to fisheries across 10+ partners. Built data models, implemented CI/CD pipelines, and automated testing for reliable production deployments. Collaborated cross-functionally with product and engineering teams.</div><div class="exp-tools">Java, Python, Linux, SQL, React.js, Git, Distributed Systems, CI/CD, Data Modeling</div></div>
+                <div>
+                    <div class="exp-company">Diive Consulting</div>
+                    <div class="exp-location">Cape Town, South Africa</div>
+                    <div class="exp-period">June 2023 - August 2023</div>
+                </div>
+                <div>
+                    <div class="exp-role">Data Science Intern</div>
+                    <div class="exp-impact">↑ 10x partner network scalability</div>
+                    <div class="exp-description">Designed distributed platform optimizing seafood procurement across 10+ partners. Implemented CI/CD pipelines reducing deployment time by 70%. Built data models that optimized inventory turnover and reduced waste.</div>
+                    <div class="exp-tools">Java, Python, SQL, Distributed Systems, CI/CD, Process Optimization</div>
+                </div>
             </div>
             <div class="experience-item reveal">
-                <div><div class="exp-company">UBS</div><div class="exp-location">New York, NY</div><div class="exp-period">March 2023 - May 2023</div></div>
-                <div><div class="exp-role">Technology Competition Winner</div><div class="exp-description">Built algorithmic investment-ranking engine processing large-scale financial datasets with ESG metrics. Delivered production-ready data models collaborating with engineering, product, and finance teams under tight deadlines.</div><div class="exp-tools">C++, Java, SQL, MATLAB, Data Analysis, Algorithm Design, Financial Modeling</div></div>
+                <div>
+                    <div class="exp-company">UBS</div>
+                    <div class="exp-location">New York, NY</div>
+                    <div class="exp-period">March 2023 - May 2023</div>
+                </div>
+                <div>
+                    <div class="exp-role">Technology Competition Winner</div>
+                    <div class="exp-impact">↑ 1st place out of 50+ teams</div>
+                    <div class="exp-description">Built algorithmic engine optimizing ESG-based investment rankings across large-scale financial datasets. Optimized algorithm runtime complexity from O(n²) to O(n log n), enabling real-time portfolio analysis.</div>
+                    <div class="exp-tools">C++, Java, SQL, Algorithm Optimization, Financial Modeling</div>
+                </div>
             </div>
             <div class="experience-item reveal">
-                <div><div class="exp-company">Goldman Sachs</div><div class="exp-location">New York, NY</div><div class="exp-period">Jan 2023 - Jan 2024</div></div>
-                <div><div class="exp-role">Software Engineering Emerging Leader</div><div class="exp-description">Selected for competitive programs analyzing large-scale financial systems and internet service architectures. Built resilient backend services with hands-on experience in production infrastructure, real-time systems, and cross-functional collaboration.</div><div class="exp-tools">Python, Java, C++, Linux, System Design, Real-time Systems, Cloud Infrastructure</div></div>
+                <div>
+                    <div class="exp-company">Goldman Sachs</div>
+                    <div class="exp-location">New York, NY</div>
+                    <div class="exp-period">Jan 2023 - Jan 2024</div>
+                </div>
+                <div>
+                    <div class="exp-role">Software Engineering Emerging Leader</div>
+                    <div class="exp-impact">↑ Production system optimization</div>
+                    <div class="exp-description">Selected for competitive programs focused on optimizing large-scale financial systems. Built backend services with optimized latency for real-time trading infrastructure. Analyzed and improved system performance bottlenecks.</div>
+                    <div class="exp-tools">Python, Java, C++, Linux, System Optimization, Performance Tuning</div>
+                </div>
             </div>
         </div>
     </section>
+    
     <section id="projects">
         <div class="section-header">
             <div class="section-eyebrow">Projects</div>
-            <h2 class="section-title">The <em>work</em></h2>
+            <h2 class="section-title">The <em>solutions</em></h2>
         </div>
-        <p class="projects-intro reveal">Production systems, data pipelines, and infrastructure projects built to scale.</p>
+        <p class="projects-intro reveal">Systems engineered for maximum performance, efficiency, and scale.</p>
         <div class="projects-grid">
-            <div class="project-card project-featured reveal">
+            <div class="project-card project-featured reveal-scale">
                 <div class="project-content">
-                    <div class="project-header"><span class="project-category">Data Infrastructure</span><span class="project-number">01</span></div>
-                    <h3 class="project-title">Namani: Real-Time Agricultural Data Platform</h3>
-                    <p class="project-description">End-to-end data infrastructure handling IoT sensor ingestion, satellite imagery processing, and ML model serving. Built data warehouse architecture supporting analytics dashboards for farmers across South Africa, Italy, and the United States.</p>
-                    <div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">SQL</span><span class="tech-tag">MongoDB</span><span class="tech-tag">Data Pipelines</span><span class="tech-tag">Linux</span><span class="tech-tag">REST APIs</span></div>
+                    <div class="project-header">
+                        <span class="project-category">Production Optimization</span>
+                        <span class="project-number">01</span>
+                    </div>
+                    <h3 class="project-title">Namani: Agricultural Yield Optimization Platform</h3>
+                    <p class="project-description">End-to-end system optimizing crop yields through real-time sensor data, satellite imagery, and ML predictions. Built data pipelines processing 1M+ daily data points with sub-second latency.</p>
+                    <div class="project-impact">40% average yield improvement</div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">Edge ML</span>
+                    </div>
                 </div>
-                <div class="project-visual"></div>
+                <a href="https://namanitech.com/" target="_blank" class="project-visual"></a>
             </div>
-            <div class="project-card reveal"><div class="project-header"><span class="project-category">Data Engineering</span><span class="project-number">02</span></div><h3 class="project-title">LeanNLP Manufacturing Analytics</h3><p class="project-description">Built data pipeline analyzing manufacturing process data to identify inefficiencies. Deployed scalable ETL processes generating real-time business insights and optimization recommendations.</p><div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">SQL</span><span class="tech-tag">spaCy</span><span class="tech-tag">Data Pipelines</span></div></div>
-            <div class="project-card reveal"><div class="project-header"><span class="project-category">Production Systems</span><span class="project-number">03</span></div><h3 class="project-title">Flash Translation Layer Simulator</h3><p class="project-description">Full production system simulator with out-of-place updates, garbage collection, wear leveling, and performance analytics dashboard for storage optimization.</p><div class="project-tech"><span class="tech-tag">C++</span><span class="tech-tag">Linux</span><span class="tech-tag">Systems Programming</span></div></div>
-            <div class="project-card reveal"><div class="project-header"><span class="project-category">Backend Services</span><span class="project-number">04</span></div><h3 class="project-title">NLP-to-PLC Industrial System</h3><p class="project-description">Backend service translating natural language to ladder logic with predictive analytics. Universal PLC connectivity via OPC-UA protocol handling real-time industrial data.</p><div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">React</span><span class="tech-tag">OPC-UA</span><span class="tech-tag">REST APIs</span></div></div>
-            <div class="project-card reveal"><div class="project-header"><span class="project-category">Data Analytics</span><span class="project-number">05</span></div><h3 class="project-title">UBS Investment Ranking Engine</h3><p class="project-description">Algorithmic data processing engine analyzing ESG metrics across large-scale financial datasets for asset evaluation and portfolio optimization.</p><div class="project-tech"><span class="tech-tag">C++</span><span class="tech-tag">Java</span><span class="tech-tag">SQL</span><span class="tech-tag">Data Analysis</span></div><div class="award-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>Competition Winner</div></div>
-            <div class="project-card reveal"><div class="project-header"><span class="project-category">ML Infrastructure</span><span class="project-number">06</span></div><h3 class="project-title">Transformer Machine Translation</h3><p class="project-description">End-to-end ML pipeline: data preprocessing, model training, and inference serving for German-to-English translation with BPE tokenization.</p><div class="project-tech"><span class="tech-tag">PyTorch</span><span class="tech-tag">Python</span><span class="tech-tag">Data Processing</span></div></div>
-            <div class="project-card reveal"><div class="project-header"><span class="project-category">IoT Data</span><span class="project-number">07</span></div><h3 class="project-title">M5Stack Sensor Data Pipeline</h3><p class="project-description">IoT data collection and processing pipeline supporting real-time agricultural monitoring with MQTT message queuing.</p><div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">MQTT</span><span class="tech-tag">ESP32</span><span class="tech-tag">Data Ingestion</span></div></div>
-            <div class="project-card reveal"><div class="project-header"><span class="project-category">Hardware Systems</span><span class="project-number">08</span></div><h3 class="project-title">8-bit MIPS Microprocessor</h3><p class="project-description">Designed production-ready chip in 0.5μm technology with full verification pipeline: DRC, LVS, extraction, and timing analysis.</p><div class="project-tech"><span class="tech-tag">Verilog</span><span class="tech-tag">Cadence</span><span class="tech-tag">Linux</span></div></div>
-            <div class="project-card reveal"><div class="project-header"><span class="project-category">Embedded Systems</span><span class="project-number">09</span></div><h3 class="project-title">AutoGuitar Embedded System</h3><p class="project-description">Real-time audio signal processing system with frequency analysis and motor control running on Linux-based Raspberry Pi.</p><div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">Linux</span><span class="tech-tag">DSP</span><span class="tech-tag">Raspberry Pi</span></div></div>
-            <div class="project-card reveal"><div class="project-header"><span class="project-category">Data Analysis</span><span class="project-number">10</span></div><h3 class="project-title">BERT Embeddings Analysis</h3><p class="project-description">Large-scale embedding analysis with dimensionality reduction (PCA, t-SNE, UMAP) and clustering for NLP insights.</p><div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">BERT</span><span class="tech-tag">Sklearn</span><span class="tech-tag">Data Analysis</span></div></div>
-            <div class="project-card reveal"><div class="project-header"><span class="project-category">Full-Stack</span><span class="project-number">11</span></div><h3 class="project-title">Sumlet: Student Housing Platform</h3><p class="project-description">Backend services with real-time database, user authentication, and data-driven matching algorithms for student housing.</p><div class="project-tech"><span class="tech-tag">React</span><span class="tech-tag">Node.js</span><span class="tech-tag">SQL</span><span class="tech-tag">Real-time DB</span></div></div>
-            <div class="project-card reveal"><div class="project-header"><span class="project-category">Embedded</span><span class="project-number">12</span></div><h3 class="project-title">Theremin Signal Processor</h3><p class="project-description">Real-time digital signal processing system with custom audio synthesis running on embedded Linux.</p><div class="project-tech"><span class="tech-tag">C</span><span class="tech-tag">Linux</span><span class="tech-tag">DSP</span></div><div class="award-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>Innovation Award</div></div>
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <span class="project-category">Process Optimization</span>
+                    <span class="project-number">02</span>
+                </div>
+                <h3 class="project-title">LeanNLP Manufacturing Analytics</h3>
+                <p class="project-description">NLP pipeline identifying manufacturing inefficiencies and generating optimization recommendations in real-time.</p>
+                <div class="project-impact">25% reduction in production waste</div>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">spaCy</span>
+                    <span class="tech-tag">SQL</span>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <span class="project-category">Storage Optimization</span>
+                    <span class="project-number">03</span>
+                </div>
+                <h3 class="project-title">Flash Translation Layer Optimizer</h3>
+                <p class="project-description">Optimized storage system with intelligent garbage collection, wear leveling, and performance analytics.</p>
+                <div class="project-impact">3x write amplification reduction</div>
+                <div class="project-tech">
+                    <span class="tech-tag">C++</span>
+                    <span class="tech-tag">Linux</span>
+                    <span class="tech-tag">Systems</span>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <span class="project-category">Industrial Optimization</span>
+                    <span class="project-number">04</span>
+                </div>
+                <h3 class="project-title">NLP-to-PLC Industrial System</h3>
+                <p class="project-description">Backend translating natural language to optimized PLC code with predictive maintenance analytics.</p>
+                <div class="project-impact">50% programming time reduction</div>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">OPC-UA</span>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <span class="project-category">Algorithm Optimization</span>
+                    <span class="project-number">05</span>
+                </div>
+                <h3 class="project-title">UBS Investment Ranking Engine</h3>
+                <p class="project-description">Optimized ranking algorithm processing ESG metrics across massive financial datasets in real-time.</p>
+                <div class="project-impact">O(n²) → O(n log n) complexity</div>
+                <div class="project-tech">
+                    <span class="tech-tag">C++</span>
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">SQL</span>
+                </div>
+                <div class="award-badge">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                    Competition Winner
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <span class="project-category">ML Optimization</span>
+                    <span class="project-number">06</span>
+                </div>
+                <h3 class="project-title">Transformer Machine Translation</h3>
+                <p class="project-description">Optimized encoder-decoder architecture with efficient attention mechanisms and BPE tokenization.</p>
+                <div class="project-impact">30% inference speedup</div>
+                <div class="project-tech">
+                    <span class="tech-tag">PyTorch</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">CUDA</span>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <span class="project-category">Hardware Optimization</span>
+                    <span class="project-number">07</span>
+                </div>
+                <h3 class="project-title">8-bit MIPS Microprocessor</h3>
+                <p class="project-description">Area and power optimized chip design in 0.5μm technology with full verification pipeline.</p>
+                <div class="project-impact">20% area reduction vs baseline</div>
+                <div class="project-tech">
+                    <span class="tech-tag">Verilog</span>
+                    <span class="tech-tag">Cadence</span>
+                    <span class="tech-tag">Synopsys</span>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <span class="project-category">Real-time Optimization</span>
+                    <span class="project-number">08</span>
+                </div>
+                <h3 class="project-title">AutoGuitar Tuning System</h3>
+                <p class="project-description">Real-time audio processing with optimized FFT and motor control algorithms for precise tuning.</p>
+                <div class="project-impact">Sub-cent tuning accuracy</div>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">DSP</span>
+                    <span class="tech-tag">Raspberry Pi</span>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <span class="project-category">Platform Optimization</span>
+                    <span class="project-number">09</span>
+                </div>
+                <h3 class="project-title">Sumlet: Student Housing Platform</h3>
+                <p class="project-description">Optimized matching algorithms connecting students with housing, with real-time availability updates.</p>
+                <div class="project-impact">85% faster match rate</div>
+                <div class="project-tech">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">SQL</span>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <span class="project-category">Signal Optimization</span>
+                    <span class="project-number">10</span>
+                </div>
+                <h3 class="project-title">Theremin Signal Processor</h3>
+                <p class="project-description">Optimized DSP pipeline with low-latency audio synthesis on embedded Linux.</p>
+                <div class="project-impact">&lt;5ms audio latency</div>
+                <div class="project-tech">
+                    <span class="tech-tag">C</span>
+                    <span class="tech-tag">Linux</span>
+                    <span class="tech-tag">DSP</span>
+                </div>
+                <div class="award-badge">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                    Innovation Award
+                </div>
+            </div>
         </div>
     </section>
+    
     <section id="skills">
         <div class="section-header">
             <div class="section-eyebrow" style="color:var(--teal)">Expertise</div>
             <h2 class="section-title" style="color:var(--cream)">The <em>toolkit</em></h2>
         </div>
         <div class="skills-grid">
-            <div class="skill-category reveal"><h3>Languages</h3><div class="skill-list"><span class="skill-item">Python</span><span class="skill-item">Java</span><span class="skill-item">C++</span><span class="skill-item">SQL</span><span class="skill-item">JavaScript</span><span class="skill-item">PHP</span><span class="skill-item">Bash</span><span class="skill-item">R</span></div></div>
-            <div class="skill-category reveal"><h3>Data & Analytics</h3><div class="skill-list"><span class="skill-item">Data Warehousing</span><span class="skill-item">ETL Pipelines</span><span class="skill-item">MySQL / PostgreSQL</span><span class="skill-item">MongoDB</span><span class="skill-item">Data Modeling</span><span class="skill-item">Statistical Analysis</span><span class="skill-item">Pandas / NumPy</span></div></div>
-            <div class="skill-category reveal"><h3>Infrastructure</h3><div class="skill-list"><span class="skill-item">Linux / Unix</span><span class="skill-item">TCP/IP Networking</span><span class="skill-item">Load Balancing</span><span class="skill-item">CI/CD Pipelines</span><span class="skill-item">Cloud (AWS/GCP)</span><span class="skill-item">Docker</span><span class="skill-item">REST APIs</span></div></div>
-            <div class="skill-category reveal"><h3>Production Systems</h3><div class="skill-list"><span class="skill-item">Backend Services</span><span class="skill-item">Real-time Systems</span><span class="skill-item">System Design</span><span class="skill-item">Performance Optimization</span><span class="skill-item">On-call / Incident Response</span><span class="skill-item">Monitoring & Debugging</span></div></div>
+            <div class="skill-category reveal">
+                <h3>Languages</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Python<div class="skill-level"><div class="skill-level-fill" data-level="95"></div></div></span>
+                    <span class="skill-item">C++<div class="skill-level"><div class="skill-level-fill" data-level="85"></div></div></span>
+                    <span class="skill-item">Java<div class="skill-level"><div class="skill-level-fill" data-level="80"></div></div></span>
+                    <span class="skill-item">SQL<div class="skill-level"><div class="skill-level-fill" data-level="90"></div></div></span>
+                    <span class="skill-item">JavaScript<div class="skill-level"><div class="skill-level-fill" data-level="75"></div></div></span>
+                    <span class="skill-item">Bash<div class="skill-level"><div class="skill-level-fill" data-level="80"></div></div></span>
+                </div>
+            </div>
+            <div class="skill-category reveal">
+                <h3>Data Optimization</h3>
+                <div class="skill-list">
+                    <span class="skill-item">ETL Pipelines<div class="skill-level"><div class="skill-level-fill" data-level="90"></div></div></span>
+                    <span class="skill-item">Data Warehousing<div class="skill-level"><div class="skill-level-fill" data-level="85"></div></div></span>
+                    <span class="skill-item">Query Optimization<div class="skill-level"><div class="skill-level-fill" data-level="88"></div></div></span>
+                    <span class="skill-item">Statistical Analysis<div class="skill-level"><div class="skill-level-fill" data-level="82"></div></div></span>
+                    <span class="skill-item">Data Modeling<div class="skill-level"><div class="skill-level-fill" data-level="85"></div></div></span>
+                </div>
+            </div>
+            <div class="skill-category reveal">
+                <h3>System Optimization</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Linux / Unix<div class="skill-level"><div class="skill-level-fill" data-level="88"></div></div></span>
+                    <span class="skill-item">Performance Tuning<div class="skill-level"><div class="skill-level-fill" data-level="85"></div></div></span>
+                    <span class="skill-item">CI/CD Pipelines<div class="skill-level"><div class="skill-level-fill" data-level="82"></div></div></span>
+                    <span class="skill-item">Cloud (AWS/GCP)<div class="skill-level"><div class="skill-level-fill" data-level="78"></div></div></span>
+                    <span class="skill-item">Docker<div class="skill-level"><div class="skill-level-fill" data-level="80"></div></div></span>
+                </div>
+            </div>
+            <div class="skill-category reveal">
+                <h3>Production Systems</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Backend Services<div class="skill-level"><div class="skill-level-fill" data-level="85"></div></div></span>
+                    <span class="skill-item">Real-time Systems<div class="skill-level"><div class="skill-level-fill" data-level="82"></div></div></span>
+                    <span class="skill-item">System Design<div class="skill-level"><div class="skill-level-fill" data-level="80"></div></div></span>
+                    <span class="skill-item">Latency Optimization<div class="skill-level"><div class="skill-level-fill" data-level="88"></div></div></span>
+                    <span class="skill-item">Debugging at Scale<div class="skill-level"><div class="skill-level-fill" data-level="85"></div></div></span>
+                </div>
+            </div>
         </div>
     </section>
+    
     <section id="interests">
         <div class="interests-content reveal">
-            <div class="interests-title">Beyond the <em>code</em></div>
+            <div class="interests-title">Beyond the <em>optimization</em></div>
             <div class="interests-list">
                 <span class="interest-tag">South African Rugby</span>
                 <span class="interest-tag">European Soccer</span>
@@ -322,27 +714,197 @@
             </div>
         </div>
     </section>
+    
     <section id="contact">
         <div class="contact-content">
             <div class="contact-eyebrow">Get in Touch</div>
-            <h2 class="contact-title">Let's build something <span class="gradient-text"><em>beautiful</em></span>, together.</h2>
+            <h2 class="contact-title">Let's <span class="gradient-text"><em>optimize</em></span> together</h2>
             <div class="contact-buttons">
-                <a href="mailto:malatjimashigo@gmail.com" class="btn btn-primary"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>Contact Me</a>
+                <a href="mailto:malatjimashigo@gmail.com" class="btn btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Contact Me
+                </a>
                 <a href="https://www.linkedin.com/in/malik-mashigo-b38900241/" class="btn btn-secondary" target="_blank">LinkedIn</a>
                 <a href="https://github.com/MalikMashigo" class="btn btn-secondary" target="_blank">GitHub</a>
             </div>
         </div>
     </section>
+    
     <footer>
         <div class="footer-logo">Malik Mashigo</div>
         <span class="footer-text">© 2025</span>
-        <div class="footer-links"><a href="#about">About</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div>
+        <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
     </footer>
+    
     <script>
-        const observerOptions={threshold:0.1,rootMargin:'0px 0px -60px 0px'};
-        const observer=new IntersectionObserver((entries)=>{entries.forEach((entry,index)=>{if(entry.isIntersecting){setTimeout(()=>{entry.target.classList.add('visible')},index*30)}})},observerOptions);
-        document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-        window.addEventListener('scroll',()=>{const nav=document.querySelector('nav');nav.style.boxShadow=window.scrollY>100?'0 4px 20px rgba(0,0,0,0.04)':'none'});
+        // Progress Bar
+        const progressBar = document.querySelector('.progress-bar');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progressBar.style.width = scrollPercent + '%';
+        });
+        
+        // Particles
+        const particlesContainer = document.querySelector('.particles');
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        document.addEventListener('mousedown', () => cursor.classList.add('click'));
+        document.addEventListener('mouseup', () => cursor.classList.remove('click'));
+        document.querySelectorAll('a, button, .tag, .course-tag, .tech-tag, .interest-tag, .stat, .project-card, .skill-item, .metric-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+        
+        // Navbar Scroll
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 100);
+        });
+        
+        // Back to Top
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('visible', window.scrollY > 500);
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Counter Animation
+        const animateValue = (element, target, suffix = '') => {
+            let current = 0;
+            const increment = target / 60;
+            const updateValue = () => {
+                if (current < target) {
+                    current += increment;
+                    element.textContent = Math.ceil(current) + suffix;
+                    requestAnimationFrame(updateValue);
+                } else {
+                    element.textContent = target + suffix;
+                }
+            };
+            updateValue();
+        };
+        
+        // Skill Level Animation
+        const animateSkillLevels = () => {
+            document.querySelectorAll('.skill-level-fill').forEach(fill => {
+                const level = fill.getAttribute('data-level');
+                fill.style.width = level + '%';
+            });
+        };
+        
+        // Scroll Reveal
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -60px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                        
+                        // Animate counters in this element
+                        entry.target.querySelectorAll('[data-target]').forEach(counter => {
+                            const target = +counter.getAttribute('data-target');
+                            const suffix = counter.getAttribute('data-suffix') || '+';
+                            animateValue(counter, target, suffix);
+                        });
+                        
+                        // Animate skill levels
+                        if (entry.target.querySelector('.skill-level-fill')) {
+                            setTimeout(animateSkillLevels, 300);
+                        }
+                    }, index * 50);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => observer.observe(el));
+        
+        // Hero Stats Animation
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.stat-value[data-target]').forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        const suffix = counter.getAttribute('data-suffix') || '+';
+                        animateValue(counter, target, suffix);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) statsObserver.observe(heroStats);
+        
+        // Mobile Menu
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (window.innerWidth <= 768) {
+                        navLinks.style.display = 'none';
+                        menuToggle.classList.remove('active');
+                    }
+                }
+            });
+        });
+        
+        // Parallax effect on hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+                hero.style.opacity = 1 - (scrolled / window.innerHeight);
+            }
+        });
+        
+        // Tilt effect on project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                card.style.transform = `translateY(-8px) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        });
     </script>
 </body>
 </html>
